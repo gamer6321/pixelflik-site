@@ -5,23 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PixelFlix.pro</title>
   <style>
+    :root {
+      --bg-color: white;
+      --text-color: black;
+      --link-color: #0070f3;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --link-color: #80bfff;
+    }
+
     body {
       font-family: sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       max-width: 800px;
       margin: 40px auto;
       padding: 0 20px;
       line-height: 1.6;
-      background-color: white;
-      color: black;
-      transition: all 0.3s ease;
-    }
-
-    h1, h2 {
-      color: inherit;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     a {
-      color: #0070f3;
+      color: var(--link-color);
     }
 
     .button {
@@ -43,15 +51,13 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-
-      a {
-        color: #80bfff;
-      }
+    .theme-toggle {
+      margin-top: 30px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--link-color);
+      background: none;
+      border: none;
     }
   </style>
 </head>
@@ -74,5 +80,27 @@
 
   <h2>Refund Policy</h2>
   <p>Full refunds are available within 7 days of purchase. Contact us via email to request a refund.</p>
+
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Light/Dark Mode</button>
+
+  <script>
+    function applyTheme(theme) {
+      document.body.classList.toggle('dark', theme === 'dark');
+    }
+
+    function toggleTheme() {
+      const current = document.body.classList.contains('dark') ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    }
+
+    // On page load
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+    })();
+  </script>
 </body>
 </html>
