@@ -52,16 +52,25 @@
     }
 
     .theme-toggle {
-      margin-top: 30px;
-      cursor: pointer;
-      font-size: 14px;
-      color: var(--link-color);
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      font-size: 26px;
       background: none;
       border: none;
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.2);
     }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeButton" aria-label="Toggle theme">🌞</button>
+
   <h1>PixelFlix.pro</h1>
   <p><strong>Welcome!</strong> We provide private and secure server access for file storage, hosting, and other personal use. Access is fast, reliable, and always on.</p>
 
@@ -81,11 +90,11 @@
   <h2>Refund Policy</h2>
   <p>Full refunds are available within 7 days of purchase. Contact us via email to request a refund.</p>
 
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Light/Dark Mode</button>
-
   <script>
     function applyTheme(theme) {
       document.body.classList.toggle('dark', theme === 'dark');
+      const icon = document.getElementById('themeButton');
+      icon.textContent = theme === 'dark' ? '🌚' : '🌞';
     }
 
     function toggleTheme() {
@@ -95,8 +104,7 @@
       applyTheme(next);
     }
 
-    // On page load
-    (function() {
+    (function () {
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
