@@ -11,10 +11,13 @@
       margin: 40px auto;
       padding: 0 20px;
       line-height: 1.6;
+      background-color: white;
+      color: black;
+      transition: all 0.3s ease;
     }
 
     h1, h2 {
-      color: #333;
+      color: inherit;
     }
 
     a {
@@ -26,7 +29,7 @@
       padding: 14px 28px;
       font-size: 16px;
       font-weight: bold;
-      color: #fff;
+      color: white;
       background: linear-gradient(135deg, #7f5af0, #2cb67d);
       text-decoration: none;
       border-radius: 8px;
@@ -39,11 +42,22 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      a {
+        color: #80bfff;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>PixelFlix.pro</h1>
-  <p><strong>Welcome!</strong> We provide private and secure server access for file storage, and web hosting purposes. Access is fast, reliable, and always on.</p>
+  <p><strong>Welcome!</strong> We provide private and secure server access for file storage, hosting, and other personal use. Access is fast, reliable, and always on.</p>
 
   <h2>Pricing</h2>
   <ul>
@@ -61,7 +75,4 @@
   <h2>Refund Policy</h2>
   <p>Full refunds are available within 7 days of purchase. Contact us via email to request a refund.</p>
 </body>
-<footer>
-  <a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a>
-</footer>
 </html>
